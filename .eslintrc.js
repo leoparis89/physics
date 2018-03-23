@@ -43,6 +43,7 @@ module.exports = {
       ERROR,
       "always"
     ],
+    'no-undef': OFF,
     'space-before-blocks': ERROR,
     'space-before-function-paren': OFF,
     'no-multi-spaces': ERROR,
