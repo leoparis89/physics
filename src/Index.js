@@ -1,11 +1,7 @@
 import './styles/styles.scss';
 import {Engine, Bodies, World} from 'matter-js';
-// const p5 = require('p5');
-// const myP5 = new p5();
 import 'p5';
 
-// myP5.setup = () => {//   myP5.createCanvas(640, 480)
-// }
 let box, engine, world;
 
 
@@ -13,14 +9,31 @@ window.setup = () => {
   createCanvas(640, 480);
   engine = Engine.create();
   world = engine.world;
-  box = Bodies.rectangle(200, 100, 80, 80);
   Engine.run(engine);
-  console.log(box);
-  World.add(world, box);
+  // console.log(box);
+  box = new Box(50, 50, 80, 80);
 };
 
 window.draw = () => {
   background(52);
-
-  rect(box.position.x, box.position.y, 80, 80);
+  box.show();
 };
+
+class Box {
+  constructor(x, y, w, h) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.body = Bodies.rectangle(x, y, w, h);
+    World.add(world, this.body);
+  }
+
+  show() {
+    const {position: {x, y}, angle} = this.body;
+    push();
+    translate(x, y);
+    rect(0, 0, this.w, this.h);
+    pop();
+  }
+}
