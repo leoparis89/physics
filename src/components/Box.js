@@ -1,4 +1,5 @@
 import {Bodies, World} from 'matter-js';
+import myP5 from './myP5';
 
 export class Box {
   constructor(x, y, w, h, world, options) {
@@ -13,14 +14,14 @@ export class Box {
 
   show() {
     const {position: {x, y}, angle} = this.body;
-    push();
-    rectMode(CENTER);
-    translate(x, y);
-    rotate(angle);
-    strokeWeight(4);
-    stroke(255);
-    fill(127);
-    rect(0, 0, this.w, this.h);
-    pop();
+    myP5.push();
+    myP5.rectMode(myP5.CENTER);
+    myP5.translate(x, y);
+    myP5.rotate(angle);
+    myP5.strokeWeight(4);
+    myP5.stroke(255);
+    myP5.fill(127);
+    myP5.rect(0, 0, this.w, this.h);
+    myP5.pop();
   }
 }

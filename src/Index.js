@@ -1,21 +1,24 @@
 import './styles/styles.scss';
 import {Engine} from 'matter-js';
-import 'p5';
+// import * as p5 from 'p5';
+import myP5 from './components/myP5';
 import {Box} from './components/Box';
 
 let engine, world, ground, boxes=[];
 
 
-window.setup = () => {
-  createCanvas(640, 480);
+
+myP5.setup = () => {
+  myP5.createCanvas(640, 480);
   engine = Engine.create();
   world = engine.world;
   Engine.run(engine);
-  ground = new Box(320,480, 640, 50, world, {isStatic:true});
+  ground = new Box(320,480, 640, 50, world, {isStatic:true, angle: myP5.
+    PI / 4});
 };
 
-window.draw = () => {
-  background(52);
+myP5.draw = () => {
+  myP5.background(52);
   ground.show();
   for (let box of boxes) {
     box.show();
@@ -23,5 +26,5 @@ window.draw = () => {
 };
 
 window.addEventListener('mousedown', ({x, y}) => {
-  boxes.push(new Box(x, y, random(10, 40), random(10, 40), world, {friction: 0, restitution: 1}));
+  boxes.push(new Box(x, y, myP5.random(10, 40), myP5.random(10, 40), world, {friction: 0, restitution: 1}));
 });
